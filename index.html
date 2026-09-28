@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kisah Klasik Kita - Galeri Kenangan Pasangan</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Config for Custom Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FDFBF7',
+                        paper: '#F4ECE1',
+                        warmSand: '#E3D7C7',
+                        charcoal: '#2B2826',
+                        dustyRose: '#C29B90',
+                        warmBrown: '#8C6751',
+                        softGold: '#C5A059'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar for classic feel */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FDFBF7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D8C8B8;
+            border-radius: 4px;
+        }
+
+        /* Polaroid Effect */
+        .polaroid {
+            background: #ffffff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.06);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .polaroid:active, .polaroid:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+
+        /* Modal Blur */
+        .backdrop-blur-custom {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        /* Hide Scrollbar on horizontal scroll elements */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-cream text-charcoal font-sans antialiased selection:bg-dustyRose selection:text-white min-h-screen flex flex-col pb-24 md:pb-12">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-40 bg-cream/90 backdrop-blur-md border-b border-warmSand/60 py-3.5 px-4 md:px-10 flex justify-between items-center">
+        <a href="#" class="font-serif text-xl md:text-2xl font-semibold tracking-wider text-charcoal hover:text-warmBrown transition-colors flex items-center gap-2">
+            <i class="fa-solid fa-heart text-xs text-dustyRose"></i>
+            <span>Our Memories</span>
+        </a>
+        
+        
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-8 pb-8 md:pt-16 md:pb-12 px-4 text-center max-w-3xl mx-auto">
+        
+        <h1 class="font-serif text-3xl sm:text-5xl font-normal leading-tight mb-4 tracking-tight text-charcoal">About Us</h1>
+        <div class="w-10 h-[1px] bg-warmBrown/40 mx-auto mb-4"></div>
+        
+    </section>
+
+    <!-- Time Counter Section -->
+    <section class="py-6 px-4">
+        <div class="max-w-4xl mx-auto bg-paper/70 rounded-3xl p-5 md:p-8 border border-warmSand/60 shadow-sm text-center">
+            <span class="text-[10px] uppercase tracking-widest text-warmBrown font-semibold block mb-1">Since</span>
+            <h2 class="font-serif text-2xl md:text-3xl font-semibold text-charcoal mb-4">04 Oktober 2025</h2>
+            
+            <!-- Live Counter Grid -->
+            <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-2xl mx-auto mb-6">
+                <div class="bg-cream p-3 sm:p-4 rounded-2xl border border-warmSand/50 shadow-2xs">
+                    <span id="days" class="block font-serif text-2xl sm:text-4xl font-bold text-charcoal">0</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-charcoal/60">Hari</span>
+                </div>
+                <div class="bg-cream p-3 sm:p-4 rounded-2xl border border-warmSand/50 shadow-2xs">
+                    <span id="hours" class="block font-serif text-2xl sm:text-4xl font-bold text-charcoal">0</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-charcoal/60">Jam</span>
+                </div>
+                <div class="bg-cream p-3 sm:p-4 rounded-2xl border border-warmSand/50 shadow-2xs">
+                    <span id="minutes" class="block font-serif text-2xl sm:text-4xl font-bold text-charcoal">0</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-charcoal/60">Menit</span>
+                </div>
+                <div class="bg-cream p-3 sm:p-4 rounded-2xl border border-warmSand/50 shadow-2xs">
+                    <span id="seconds" class="block font-serif text-2xl sm:text-4xl font-bold text-charcoal">0</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-charcoal/60">Detik</span>
+                </div>
+            </div>
+
+            <!-- Quick Stats Bar -->
+            <div class="pt-4 border-t border-warmSand/40 flex justify-around text-xs text-charcoal/70">
+                <div>
+                    <span class="text-warmBrown font-semibold block text-base font-serif" id="stat-total-moments">0</span>
+                    <span class="text-[11px]">Momen Terukir</span>
+                </div>
+                <div class="border-r border-warmSand/60"></div>
+                <div>
+                    <span class="text-warmBrown font-semibold block text-base font-serif" id="stat-total-photos">0</span>
+                    <span class="text-[11px]">Foto Tersimpan</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="py-10 px-4 max-w-4xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+            <div>
+                <span class="text-[10px] uppercase tracking-widest text-warmBrown font-semibold block">Garis Waktu</span>
+                <h2 class="font-serif text-2xl md:text-3xl font-normal mt-0.5">Timeline Kenangan</h2>
+            </div>
+            
+            <!-- Filter Pills -->
+            <div class="flex items-center space-x-1.5 overflow-x-auto no-scrollbar pb-1 text-xs">
+                <button onclick="filterTimeline('all')" class="filter-btn active-filter px-3.5 py-1.5 rounded-full border border-warmBrown bg-charcoal text-cream transition-all whitespace-nowrap" data-category="all">Semua</button>
+                <button onclick="filterTimeline('kencan')" class="filter-btn px-3.5 py-1.5 rounded-full border border-warmSand bg-cream text-charcoal/80 hover:border-warmBrown transition-all whitespace-nowrap" data-category="kencan">Kencan</button>
+                <button onclick="filterTimeline('travel')" class="filter-btn px-3.5 py-1.5 rounded-full border border-warmSand bg-cream text-charcoal/80 hover:border-warmBrown transition-all whitespace-nowrap" data-category="travel">Travel</button>
+                <button onclick="filterTimeline('spesial')" class="filter-btn px-3.5 py-1.5 rounded-full border border-warmSand bg-cream text-charcoal/80 hover:border-warmBrown transition-all whitespace-nowrap" data-category="spesial">Spesial</button>
+            </div>
+        </div>
+
+        <!-- Dynamic Timeline Grid -->
+        <div id="timeline-container" class="space-y-6">
+            <!-- Timeline Cards Rendered Via JS -->
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-12 bg-paper/40 border-t border-warmSand/50 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="text-[10px] uppercase tracking-widest text-warmBrown font-semibold block">Album Foto</span>
+                <h2 class="font-serif text-2xl md:text-4xl font-normal mt-1">Galeri Polaroid</h2>
+                <p class="text-xs text-charcoal/60 mt-1">Ketuk foto untuk melihat dalam layar penuh.</p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div id="gallery-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-5">
+                <!-- Polaroid Items Rendered Via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Backup & Mobile Management Tools -->
+    <section class="py-10 px-4 max-w-xl mx-auto text-center">
+        <div class="bg-cream border border-warmSand/80 rounded-2xl p-6 shadow-2xs">
+            <h3 class="font-serif text-xl font-semibold mb-1 text-charcoal">Pengaturan &amp; Backup Data HP</h3>
+            <p class="text-xs text-charcoal/60 mb-5">Simpan cadangan data foto agar tidak hilang saat ganti HP atau ganti browser.</p>
+
+            <div class="flex flex-wrap justify-center gap-3 text-xs">
+                <button onclick="exportData()" class="px-4 py-2 rounded-xl bg-paper border border-warmSand hover:bg-warmSand/40 transition-colors flex items-center gap-2 text-charcoal font-medium">
+                    <i class="fa-solid fa-download text-warmBrown"></i>
+                    <span>Ekspor Backup (JSON)</span>
+                </button>
+                <label class="px-4 py-2 rounded-xl bg-paper border border-warmSand hover:bg-warmSand/40 transition-colors flex items-center gap-2 text-charcoal font-medium cursor-pointer">
+                    <i class="fa-solid fa-upload text-warmBrown"></i>
+                    <span>Impor Backup</span>
+                    <input type="file" id="import-file" accept=".json" class="hidden" onchange="importData(event)">
+                </label>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Quick Access Bar for Mobile -->
+    <div class="fixed bottom-4 left-4 right-4 z-40 max-w-md mx-auto bg-charcoal/90 backdrop-blur-md text-cream rounded-full px-5 py-3 shadow-xl flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <button id="play-pause-btn" onclick="toggleAudio()" class="w-9 h-9 rounded-full bg-cream text-charcoal flex items-center justify-center hover:bg-warmSand transition-colors shadow">
+                <i id="audio-icon" class="fa-solid fa-play text-xs"></i>
+            </button>
+            <div class="text-left leading-tight">
+                <div class="text-xs font-serif font-semibold text-cream">Lagu Kenangan</div>
+                <div id="audio-status" class="text-[9px] text-cream/60 uppercase tracking-wider">Ketuk Putar</div>
+            </div>
+        </div>
+
+        <button onclick="openAddModal()" class="bg-warmBrown hover:bg-softGold text-cream text-xs px-4 py-2 rounded-full font-medium transition-colors flex items-center gap-1.5 shadow">
+            <i class="fa-solid fa-plus text-xs"></i>
+            <span>Tambah</span>
+        </button>
+    </div>
+
+    <!-- Hidden Background Audio Player -->
+    <audio id="bg-audio" loop="">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=soft-piano-108785.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- MODAL: Tambah & Edit Momen (Sangat Mudah Untuk HP) -->
+    <div id="moment-modal" class="fixed inset-0 z-50 hidden bg-charcoal/60 backdrop-blur-custom flex items-end sm:items-center justify-center p-0 sm:p-4 transition-opacity">
+        <div class="bg-cream border border-warmSand rounded-t-3xl sm:rounded-2xl max-w-lg w-full p-6 shadow-2xl relative max-h-[92vh] overflow-y-auto">
+            <button onclick="closeMomentModal()" class="absolute top-5 right-5 text-charcoal/40 hover:text-charcoal text-lg w-8 h-8 rounded-full bg-paper flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <h3 id="modal-form-title" class="font-serif text-2xl font-normal text-charcoal mb-1">Tambah Momen Baru</h3>
+            <p class="text-xs text-charcoal/60 mb-5">Pilih foto dari galeri HP atau masukkan tautan gambar.</p>
+
+            <form id="moment-form" onsubmit="handleFormSubmit(event)" class="space-y-4 text-sm">
+                <input type="hidden" id="edit-id" value="">
+
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-charcoal/70 mb-1 font-semibold">Judul Momen</label>
+                    <input type="text" id="moment-title" required="" placeholder="Contoh: Kencan Di Kedai Kopi" class="w-full bg-paper border border-warmSand/80 rounded-xl p-3 focus:outline-none focus:border-warmBrown text-charcoal">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-charcoal/70 mb-1 font-semibold">Tanggal</label>
+                        <input type="date" id="moment-date" required="" class="w-full bg-paper border border-warmSand/80 rounded-xl p-3 focus:outline-none focus:border-warmBrown text-charcoal">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-charcoal/70 mb-1 font-semibold">Kategori</label>
+                        <select id="moment-category" class="w-full bg-paper border border-warmSand/80 rounded-xl p-3 focus:outline-none focus:border-warmBrown text-charcoal">
+                            <option value="kencan">Kencan</option>
+                            <option value="travel">Travel</option>
+                            <option value="spesial">Spesial</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Dual Photo Input Mode -->
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-charcoal/70 mb-1 font-semibold">Foto Kenangan</label>
+                    
+                    <div class="space-y-2">
+                        <!-- File Upload from Mobile -->
+                        <label class="flex items-center justify-center w-full p-3 bg-paper border-2 border-dashed border-warmSand rounded-xl cursor-pointer hover:border-warmBrown transition-colors">
+                            <div class="flex items-center space-x-2 text-xs text-charcoal/70">
+                                <i class="fa-solid fa-camera text-warmBrown text-base"></i>
+                                <span id="file-upload-label" class="font-medium">Upload dari Galeri / Kamera HP</span>
+                            </div>
+                            <input type="file" id="moment-file" accept="image/*" class="hidden" onchange="handleFileSelect(event)">
+                        </label>
+
+                        <!-- Preview Area -->
+                        <div id="image-preview-container" class="hidden relative rounded-xl overflow-hidden h-36 bg-paper border border-warmSand">
+                            <img id="image-preview" src="" class="w-full h-full object-cover">
+                            <button type="button" onclick="clearImageSelection()" class="absolute top-2 right-2 bg-charcoal/70 text-cream w-7 h-7 rounded-full text-xs flex items-center justify-center">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+
+                        <!-- URL Fallback Option -->
+                        <div class="pt-1">
+                            <input type="url" id="moment-image-url" placeholder="Atau tempel URL Foto (Opsional)..." class="w-full bg-paper border border-warmSand/80 rounded-xl p-2.5 text-xs focus:outline-none focus:border-warmBrown text-charcoal">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-charcoal/70 mb-1 font-semibold">Cerita Singkat</label>
+                    <textarea id="moment-story" rows="3" required="" placeholder="Tuliskan catatan singkat kenangan manis ini..." class="w-full bg-paper border border-warmSand/80 rounded-xl p-3 focus:outline-none focus:border-warmBrown text-charcoal"></textarea>
+                </div>
+
+                <div class="pt-2 flex justify-end space-x-2">
+                    <button type="button" onclick="closeMomentModal()" class="px-4 py-2.5 rounded-xl border border-warmSand text-charcoal/70 hover:bg-paper transition-colors text-xs font-medium">
+                        Batal
+                    </button>
+                    <button type="submit" class="px-6 py-2.5 rounded-xl bg-charcoal text-cream hover:bg-warmBrown transition-colors text-xs font-medium shadow">
+                        Simpan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: Lightbox Preview Fullscreen -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 hidden bg-charcoal/85 backdrop-blur-custom flex items-center justify-center p-3" onclick="toggleModal('lightbox-modal')">
+        <div class="max-w-2xl w-full bg-cream border border-warmSand/60 rounded-2xl overflow-hidden shadow-2xl relative" onclick="event.stopPropagation()">
+            <button onclick="toggleModal('lightbox-modal')" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-charcoal/60 text-cream hover:bg-charcoal flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-xs"></i>
+            </button>
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-3/5 bg-charcoal flex items-center justify-center p-2 max-h-[50vh] md:max-h-[70vh]">
+                    <img id="lightbox-img" src="" alt="Preview" class="max-h-[48vh] md:max-h-[68vh] w-auto object-contain rounded">
+                </div>
+                <div class="md:w-2/5 p-5 flex flex-col justify-between">
+                    <div>
+                        <span id="lightbox-date" class="text-[10px] uppercase tracking-widest text-warmBrown font-semibold"></span>
+                        <h3 id="lightbox-title" class="font-serif text-2xl font-normal text-charcoal mt-1 mb-2"></h3>
+                        <p id="lightbox-story" class="font-serif italic text-charcoal/80 leading-relaxed text-sm max-h-36 overflow-y-auto"></p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-warmSand/50 flex justify-between items-center text-xs text-charcoal/50">
+                        <span id="lightbox-category" class="capitalize"></span>
+                        <i class="fa-solid fa-heart text-dustyRose"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Petunjuk Penggunaan di HP -->
+    <div id="guide-modal" class="fixed inset-0 z-50 hidden bg-charcoal/60 backdrop-blur-custom flex items-center justify-center p-4">
+        
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-charcoal text-cream text-xs px-5 py-2.5 rounded-full shadow-lg transform -translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-2">
+        <i class="fa-solid fa-circle-check text-dustyRose"></i>
+        <span id="toast-msg">Pesan notifikasi</span>
+    </div>
+
+    <script>
+        // --- Data Defaults (Dimulai sejak 04 Oktober 2025) ---
+        const defaultMoments = [
+            {
+                id: 'default-1',
+                date: '2025-10-04',
+                title: 'Awal Perjalanan Kita',
+                category: 'spesial',
+                story: 'Hari manis di mana cerita cinta kita resmi dimulai. Sebuahjanji sederhana untuk saling menemani dalam setiap langkah.',
+                image: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80'
+            },
+            {
+                id: 'default-2',
+                date: '2025-10-18',
+                title: 'Kencan Kopi Pertama',
+                category: 'kencan',
+                story: 'Menikmati cangkir hangat di kedai sudut kota saat gerimis turun pelan. Canda tawa pertama yang membuat canggung sirna.',
+                image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80'
+            },
+            {
+                id: 'default-3',
+                date: '2025-11-20',
+                title: 'Menatap Senja Di Bukit',
+                category: 'travel',
+                story: 'Perjalanan singkat ke puncak bukit. Angin sore dan kilau jingga langit kalah hangat dibandingkan genggaman tanganmu.',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80'
+            }
+        ];
+
+        let moments = [];
+        let currentBase64Image = '';
+
+        // --- Load & Save LocalStorage ---
+        function loadMoments() {
+            const stored = localStorage.getItem('our_love_moments_data');
+            if (stored) {
+                try {
+                    moments = JSON.parse(stored);
+                } catch (e) {
+                    moments = [...defaultMoments];
+                }
+            } else {
+                moments = [...defaultMoments];
+                saveMomentsToStorage();
+            }
+            sortMoments();
+        }
+
+        function saveMomentsToStorage() {
+            try {
+                localStorage.setItem('our_love_moments_data', JSON.stringify(moments));
+            } catch (e) {
+                showToast('Penyimpanan penuh! Gunakan gambar URL atau kompres ukuran foto.');
+            }
+        }
+
+        function sortMoments() {
+            moments.sort((a, b) => new Date(b.date) - new Date(a.date)); // Terbaru di atas
+        }
+
+        // --- Format Tanggal Indonesia ---
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateStr).toLocaleDateString('id-ID', options);
+        }
+
+        // --- Live Counter Timer (Mulai 04 Oktober 2025) ---
+        function updateCounter() {
+            const startDate = new Date('2025-10-04T00:00:00');
+            const now = new Date();
+            const diff = now - startDate;
+
+            if (diff < 0) {
+                document.getElementById('days').innerText = "0";
+                document.getElementById('hours').innerText = "0";
+                document.getElementById('minutes').innerText = "0";
+                document.getElementById('seconds').innerText = "0";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+        }
+
+        // --- Update Stats ---
+        function updateStats() {
+            document.getElementById('stat-total-moments').innerText = moments.length;
+            const photoCount = moments.filter(m => m.image && m.image.trim() !== '').length;
+            document.getElementById('stat-total-photos').innerText = photoCount;
+        }
+
+        // --- Render Timeline ---
+        function renderTimeline(filterCategory = 'all') {
+            const container = document.getElementById('timeline-container');
+            container.innerHTML = '';
+
+            const filtered = filterCategory === 'all' 
+                ? moments 
+                : moments.filter(m => m.category === filterCategory);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-charcoal/50 font-serif italic bg-paper/50 rounded-2xl border border-warmSand/40">
+                        Belum ada momen terukir di kategori ini.
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach((item) => {
+                const card = document.createElement('div');
+                card.className = 'polaroid p-4 rounded-2xl bg-white border border-warmSand/60 relative group';
+
+                card.innerHTML = `
+                    <div class="flex flex-col sm:flex-row gap-4 items-start">
+                        ${item.image ? `
+                            <div class="w-full sm:w-2/5 h-44 sm:h-36 rounded-xl overflow-hidden bg-paper shrink-0 cursor-pointer" onclick="openLightbox('${item.id}')">
+                                <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                            </div>
+                        ` : ''}
+                        
+                        <div class="flex-1 w-full flex flex-col justify-between h-full">
+                            <div>
+                                <div class="flex justify-between items-start">
+                                    <span class="text-[10px] uppercase tracking-widest text-warmBrown font-semibold">${formatDate(item.date)}</span>
+                                    
+                                    <!-- Mobile Quick Actions -->
+                                    <div class="flex items-center space-x-1 bg-paper/80 px-2 py-1 rounded-full border border-warmSand/60">
+                                        <button onclick="editMoment('${item.id}')" class="text-xs text-charcoal/60 hover:text-warmBrown px-1" title="Edit">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                        <button onclick="deleteMoment('${item.id}')" class="text-xs text-charcoal/60 hover:text-red-500 px-1" title="Hapus">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <h3 class="font-serif text-xl sm:text-2xl font-normal text-charcoal mt-1 mb-1.5">${item.title}</h3>
+                                <p class="font-serif italic text-charcoal/75 text-sm leading-relaxed">${item.story}</p>
+                            </div>
+
+                            <div class="mt-3 pt-2 border-t border-warmSand/30 flex justify-between items-center text-[10px] text-charcoal/50">
+                                <span class="capitalize bg-paper px-2 py-0.5 rounded-md border border-warmSand/40">${item.category}</span>
+                                <i class="fa-solid fa-heart text-dustyRose/70"></i>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // --- Render Gallery Grid ---
+        function renderGallery() {
+            const container = document.getElementById('gallery-container');
+            container.innerHTML = '';
+
+            const photoMoments = moments.filter(m => m.image && m.image.trim() !== '');
+
+            if (photoMoments.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-8 text-charcoal/50 font-serif italic">
+                        Belum ada foto kenangan. Tambahkan momen pertama Anda!
+                    </div>
+                `;
+                return;
+            }
+
+            photoMoments.forEach((item) => {
+                const card = document.createElement('div');
+                card.className = 'polaroid p-2.5 rounded-xl cursor-pointer bg-white border border-warmSand/50';
+                card.onclick = () => openLightbox(item.id);
+
+                card.innerHTML = `
+                    <div class="aspect-square rounded-lg overflow-hidden mb-2 bg-paper">
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="text-center px-1">
+                        <h4 class="font-serif text-sm font-normal text-charcoal truncate">${item.title}</h4>
+                        <span class="text-[9px] uppercase tracking-wider text-warmBrown block mt-0.5">${formatDate(item.date)}</span>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // --- Filter Control ---
+        function filterTimeline(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.classList.add('bg-charcoal', 'text-cream', 'border-charcoal');
+                    btn.classList.remove('border-warmSand', 'bg-cream', 'text-charcoal/80');
+                } else {
+                    btn.classList.remove('bg-charcoal', 'text-cream', 'border-charcoal');
+                    btn.classList.add('border-warmSand', 'bg-cream', 'text-charcoal/80');
+                }
+            });
+            renderTimeline(category);
+        }
+
+        // --- Handle Image Upload from HP File / Camera ---
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (file.size > 3 * 1024 * 1024) { // Warning > 3MB
+                showToast('Ukuran gambar agak besar. Foto disarankan di bawah 2MB.');
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                currentBase64Image = e.target.result;
+                document.getElementById('image-preview').src = currentBase64Image;
+                document.getElementById('image-preview-container').classList.remove('hidden');
+                document.getElementById('file-upload-label').innerText = file.name;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function clearImageSelection() {
+            currentBase64Image = '';
+            document.getElementById('moment-file').value = '';
+            document.getElementById('image-preview').src = '';
+            document.getElementById('image-preview-container').classList.add('hidden');
+            document.getElementById('file-upload-label').innerText = 'Upload dari Galeri / Kamera HP';
+        }
+
+        // --- Add / Edit Modal Controls ---
+        function openAddModal() {
+            document.getElementById('edit-id').value = '';
+            document.getElementById('modal-form-title').innerText = 'Tambah Momen Baru';
+            document.getElementById('moment-form').reset();
+            clearImageSelection();
+            toggleModal('moment-modal');
+        }
+
+        function editMoment(id) {
+            const item = moments.find(m => m.id === id);
+            if (!item) return;
+
+            document.getElementById('edit-id').value = item.id;
+            document.getElementById('modal-form-title').innerText = 'Edit Momen Kenangan';
+            document.getElementById('moment-title').value = item.title;
+            document.getElementById('moment-date').value = item.date;
+            document.getElementById('moment-category').value = item.category;
+            document.getElementById('moment-story').value = item.story;
+            
+            clearImageSelection();
+            if (item.image) {
+                if (item.image.startsWith('data:image')) {
+                    currentBase64Image = item.image;
+                    document.getElementById('image-preview').src = item.image;
+                    document.getElementById('image-preview-container').classList.remove('hidden');
+                } else {
+                    document.getElementById('moment-image-url').value = item.image;
+                }
+            }
+
+            toggleModal('moment-modal');
+        }
+
+        function closeMomentModal() {
+            toggleModal('moment-modal');
+        }
+
+        // --- Handle Form Submit ---
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const editId = document.getElementById('edit-id').value;
+            const title = document.getElementById('moment-title').value;
+            const date = document.getElementById('moment-date').value;
+            const category = document.getElementById('moment-category').value;
+            const story = document.getElementById('moment-story').value;
+            const urlImg = document.getElementById('moment-image-url').value.trim();
+
+            let finalImage = currentBase64Image || urlImg;
+
+            if (editId) {
+                // Edit Existing
+                const index = moments.findIndex(m => m.id === editId);
+                if (index !== -1) {
+                    moments[index] = {
+                        ...moments[index],
+                        title,
+                        date,
+                        category,
+                        story,
+                        image: finalImage || moments[index].image
+                    };
+                    showToast('Momen kenangan berhasil diperbarui!');
+                }
+            } else {
+                // Add New
+                const newMoment = {
+                    id: 'moment-' + Date.now(),
+                    title,
+                    date,
+                    category,
+                    story,
+                    image: finalImage
+                };
+                moments.push(newMoment);
+                showToast('Momen kenangan baru ditambahkan!');
+            }
+
+            sortMoments();
+            saveMomentsToStorage();
+            renderTimeline('all');
+            renderGallery();
+            updateStats();
+
+            closeMomentModal();
+        }
+
+        // --- Delete Moment ---
+        function deleteMoment(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus kenangan ini?')) {
+                moments = moments.filter(m => m.id !== id);
+                saveMomentsToStorage();
+                renderTimeline('all');
+                renderGallery();
+                updateStats();
+                showToast('Momen berhasil dihapus.');
+            }
+        }
+
+        // --- Lightbox Controls ---
+        function openLightbox(id) {
+            const item = moments.find(m => m.id === id);
+            if (!item) return;
+
+            document.getElementById('lightbox-img').src = item.image || 'https://via.placeholder.com/600x400?text=No+Photo';
+            document.getElementById('lightbox-title').innerText = item.title;
+            document.getElementById('lightbox-date').innerText = formatDate(item.date);
+            document.getElementById('lightbox-story').innerText = item.story;
+            document.getElementById('lightbox-category').innerText = `Kategori: ${item.category}`;
+
+            toggleModal('lightbox-modal');
+        }
+
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        // --- Audio Player Control ---
+        function toggleAudio() {
+            const audio = document.getElementById('bg-audio');
+            const icon = document.getElementById('audio-icon');
+            const status = document.getElementById('audio-status');
+
+            if (audio.paused) {
+                audio.play().then(() => {
+                    icon.className = "fa-solid fa-pause text-xs";
+                    status.innerText = "Memutar Lagu";
+                }).catch(() => {
+                    showToast('Ketuk layar terlebih dahulu untuk memutar musik.');
+                });
+            } else {
+                audio.pause();
+                icon.className = "fa-solid fa-play text-xs";
+                status.innerText = "Diberhentikan";
+            }
+        }
+
+        // --- Export / Import Backup JSON ---
+        function exportData() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(moments, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `Backup_Kenangan_Cinta_${new Date().toISOString().slice(0,10)}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            showToast('File backup berhasil diunduh!');
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (Array.isArray(imported)) {
+                        moments = imported;
+                        sortMoments();
+                        saveMomentsToStorage();
+                        renderTimeline('all');
+                        renderGallery();
+                        updateStats();
+                        showToast('Berhasil mengimpor data kenangan!');
+                    } else {
+                        showToast('Format file backup tidak valid.');
+                    }
+                } catch (err) {
+                    showToast('Gagal membaca file JSON backup.');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // --- Toast Notification ---
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = message;
+            toast.classList.remove('-translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('-translate-y-20', 'opacity-0');
+            }, 3200);
+        }
+
+        // --- Initialize App ---
+        window.onload = function() {
+            loadMoments();
+            renderTimeline('all');
+            renderGallery();
+            updateStats();
+
+            // Start Live Timer
+            updateCounter();
+            setInterval(updateCounter, 1000);
+        };
+    </script>
+
+</body></html>
